@@ -43,15 +43,34 @@ http://localhost:8000
 
 
 ## Detection Use Case: SSH Brute Force
-## SPL Query
 
-index=* "Failed password"
+## Objective
 
+Detect repeated failed SSH login attempts from the same source IP address using Splunk SPL.
+
+
+## SPL Detection Query
+
+index=* sourcetype=linux_secure "Failed password"
+| rex "from (?<src_ip>\d+\.\d+\.\d+\.\d+)"
 | stats count by src_ip
-
 | where count > 5
+| sort - count
 
-This detection identifies repeated failed SSH login attempts from the same source IP.
+## Detection Logic
+
+1. Searches Linux authentication logs for failed SSH login attempts.
+2. Extracts the source IP address using regex.
+3. Counts failed attempts per IP address.
+4. Filters for IPs with more than 5 failed login attempts.
+5. Sorts results by highest number of failures.
+
+## Sample Detection Output
+| src_ip | count |
+|----------|--------------|
+| 10.0.2.15 | 6 |
+
+This indicates a potential SSH brute force attempt from 10.0.2.15.
 
 ## Alert Configuration
 
@@ -70,4 +89,20 @@ This detection identifies repeated failed SSH login attempts from the same sourc
 - Basic SOC detection workflow
 
 ## Screenshots
+SOC-Splunk-Lab/
+│
+
+├── screenshots/
+
+    │   ├── 01_Splunk_Login.png
+
+    │   ├── 02_Splunk_Dashboard.png
+
+    │   ├── 03_Attack_Simulation.png
+
+    │   ├── 04_Raw_Failed_Search.png
+
+    │   ├── 05_Brute_Force_Detection.png
+
+    │   └── 06_Detection_Visualization.png
 
