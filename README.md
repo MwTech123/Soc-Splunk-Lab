@@ -89,20 +89,23 @@ This indicates a potential SSH brute force attempt from 10.0.2.15.
 - Basic SOC detection workflow
 
 ## Screenshots
-SOC-Splunk-Lab/
-│
 
-├── screenshots/
+### Splunk Login Interface
+![Splunk Login](screenshots/01_splunk_login.png)
 
-    │   ├── 01_Splunk_Login.png
+### Splunk Dashboard
+![Splunk Dashboard](screenshots/02_splunk_home.png)
 
-    │   ├── 02_Splunk_Dashboard.png
+### SSH Attack Simulation
+![Attack Simulation](screenshots/03_Attack_Simulation.png)
 
-    │   ├── 03_Attack_Simulation.png
+### Raw Failed Password Search
+![Raw Failed Search](screenshots/04_Raw_Failed_Search.png)
 
-    │   ├── 04_Raw_Failed_Search.png
+### Brute Force Detection Results
+![Detection Results](screenshots/05_Brute_Force_Detection.png)
 
-    │   ├── 05_Brute_Force_Detection.png
+### Detection Visualization
+![Detection Visualization](screenshots/06_Detection_Visualization.png)
 
-    │   └── 06_Detection_Visualization.png
 
