@@ -52,9 +52,13 @@ Detect repeated failed SSH login attempts from the same source IP address using 
 ## SPL Detection Query
 
 index=* sourcetype=linux_secure "Failed password"
+
 | rex "from (?<src_ip>\d+\.\d+\.\d+\.\d+)"
+
 | stats count by src_ip
+
 | where count > 5
+
 | sort - count
 
 ## Detection Logic
